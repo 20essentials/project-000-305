@@ -1,0 +1,4 @@
+- **Reference ⬇️**
+  - [Mdn](https://udn.realityripple.com/docs/Web/CSS/-webkit-tap-highlight-color)
+  - [Can I use](https://caniuse.com/?search=tap-highlight-color)
+  - [Tailwind Discussion](https://github.com/tailwindlabs/tailwindcss/discussions/2984)

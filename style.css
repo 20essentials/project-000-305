@@ -1,0 +1,153 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+    'Open Sans', 'Helvetica Neue';
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: springgreen skyblue;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  place-content: center;
+}
+
+.container-content {
+  --conic-color: skyblue;
+  width: 100%;
+  min-height: 100vh;
+  background-image: repeating-conic-gradient(
+      from var(--deg) at 100% 50%,
+      var(--conic-color) 0 1deg,
+      transparent 2deg 3deg
+    ),
+    repeating-conic-gradient(
+      from var(--deg) at 0% 50%,
+      springgreen 0 1deg,
+      transparent 2deg 3deg
+    );
+  animation: rotar 120s linear infinite alternate both;
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  row-gap: 1rem;
+  -webkit-tap-highlight-color: transparent;
+
+  h2,
+  .container-details {
+    margin-inline: auto;
+    width: 30%;
+    max-width: 800px;
+
+    @media (width <= 1111px) {
+      width: 40%;
+    }
+    @media (width <= 900px) {
+      width: 45%;
+    }
+    @media (width <= 780px) {
+      width: 40%;
+    }
+    @media (width <= 700px) and (orientation: portrait) {
+      zoom: 0.7;
+      width: 65%;
+    }
+    @media (width <= 650px) and (orientation: landscape) {
+      width: 80%;
+      zoom: 0.4;
+    }
+    @media (width <= 520px) and (orientation: landscape) {
+      width: 50%;
+      zoom: 0.4;
+    }
+  }
+
+  h2 {
+    background-color: white;
+    padding: 0.4rem;
+    border-radius: 2px;
+  }
+
+  .container-details {
+    display: flex;
+    row-gap: 1rem;
+    flex-direction: column;
+
+    details p {
+      background-color: black;
+      color: #fff;
+      transition: height 0.5s ease;
+      padding: 0.7rem 0.5rem;
+    }
+
+    video {
+      max-width: 100%;
+    }
+
+    img {
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    summary {
+      background-color: #fff;
+      padding: 0.4rem;
+      padding-right: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      border-radius: 2px;
+
+      &::marker {
+        content: '';
+      }
+
+      &::after {
+        content: '+';
+      }
+
+      [open] &::after {
+        content: '-';
+      }
+    }
+  }
+}
+
+::details-content {
+  interpolate-size: allow-keywords;
+  transition: height 0.3s ease, content-visibility 0.3s ease allow-discrete;
+  height: 0px;
+  overflow: clip;
+}
+
+[open]::details-content {
+  height: max-content;
+}
+
+@keyframes rotar {
+  0% {
+    --deg: 0deg;
+  }
+  100% {
+    --deg: 360deg;
+  }
+}
+
+@property --deg {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}
